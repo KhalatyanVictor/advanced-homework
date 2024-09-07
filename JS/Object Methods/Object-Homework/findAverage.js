@@ -71,73 +71,30 @@ const evaluations = [
     }
     ];
 
-    function findAverage(arr) {
-        let result = [];
-        const ID = Object.groupBy(arr, (student) => student.studentId);
-        let studentsObject = Object.values(ID);
-        let students = Object.values(studentsObject);
-        let acc1 = 0;
-        let acc2 = 0;
-        let acc3 = 0;
-        let length1 = 0;
-        let length2 = 0;
-        let length3 = 0;
-    
-        for (const studentArr of students) {
-            studentArr.filter(student1 => {
-                if (student1.studentId === 1) {
-                    acc1 += student1.score;
-                    length1++;
-                }
-            });
-            studentArr.filter(student2 => {
-                if (student2.studentId === 2) {
-                    acc2 += student2.score;
-                    length2++;
-                }
-            });
-            studentArr.filter(student3 => {
-                if (student3.studentId === 3) {
-                    acc3 += student3.score;
-                    length3++;
-                }
-            });
-        }
-    
-        acc1 = acc1 / length1;
-        acc2 = acc2 / length2; 
-        acc3 = acc3 / length3; 
+function findAverage(arr) {
+    let studentScores = {};
 
-        if (acc1 < 40) {
-            const student1 = arr.find(e => e.studentId === 1);
-            if (student1) {
-                result.push({
-                    studentId: student1.studentId,
-                    studentName: student1.studentName
-                });
-            }
+    arr.forEach(evaluation => {
+        if (!studentScores[evaluation.studentId]) {
+            studentScores[evaluation.studentId] = {
+                studentName: evaluation.studentName,
+                scores: []
+            };
         }
-        if (acc2 < 40) {
-            const student2 = arr.find(e => e.studentId === 2);
-            if (student2) {
-                result.push({
-                    studentId: student2.studentId,
-                    studentName: student2.studentName
-                });
-            }
+        studentScores[evaluation.studentId].scores.push(evaluation.score);
+    });
+
+    let result = [];
+    for (let studentId in studentScores) {
+        let student = studentScores[studentId];
+        let average = student.scores.reduce((sum, score) => sum + score, 0) / student.scores.length;
+        if (average < 40) {
+            result.push({ studentId, studentName: student.studentName, averageScore: average });
         }
-        if (acc3 < 40) {
-            const student3 = arr.find(e => e.studentId === 3);
-            if (student3) {
-                result.push({
-                    studentId: student3.studentId,
-                    studentName: student3.studentName
-                });
-            }
-        }
-    
-        return result;
     }
+
+    return result;
+}
     
     console.log(findAverage(evaluations));
     
