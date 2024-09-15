@@ -1,9 +1,10 @@
 function reverseString(s = ""){
-    if (typeof s !== "string") {
-        throw new Error("Input Valid String")
-    }
-    else{
+    try{
         return s.split("").reverse().join("");
+    }
+    catch(e){
+        return e.message;
+        
     }
 }
 
