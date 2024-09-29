@@ -1,3 +1,7 @@
+const p1 = new Person("Samuel", 24)
+const p2 = new Person("Joel", 36)
+const p3 = new Person("Lily", 24)
+
 function Person(name, age){
     this.name = name;
     this.age = age;
@@ -16,6 +20,11 @@ Person.prototype.poop = function(){
     return `Stomach::: ${this.stomach}`
 }
 
+Person.prototype.toString = function(){
+    return `${this.name}, ${this.age}`
+}
+
 
 console.log(person.eat("Tobleron, axi dzoxik"), person.poop());
 
+console.log(p1.toString());
