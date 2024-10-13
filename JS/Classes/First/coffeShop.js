@@ -1,39 +1,35 @@
 class CoffeeShop {
-    #name;
-    #menu;
-    #orders;
-
     constructor(name, menu) {
-        this.#name = name;
-        this.#menu = menu;
-        this.#orders = [];
+        this._name = name;
+        this._menu = menu;
+        this._orders = [];
     }
 
     get name() {
-        return this.#name;
+        return this._name;
     }
     set name(newName) {
-        this.#name = newName;
+        this._name = newName;
     }
 
     get menu() {
-        return this.#menu;
+        return this._menu;
     }
     set menu(newMenu) {
-        this.#menu = newMenu;
+        this._menu = newMenu;
     }
 
     get orders() {
-        return this.#orders;
+        return this._orders;
     }
     set orders(newOrders) {
-        this.#orders = newOrders;
+        this._orders = newOrders;
     }
 
     addOrder(itemName) {
-        const item = this.#menu.find(menuItem => menuItem.item === itemName);
+        const item = this._menu.find(menuItem => menuItem.item === itemName);
         if (item) {
-            this.#orders.push(item);
+            this._orders.push(item);
             return "Order added!";
         } else {
             return "This item is currently unavailable!";
@@ -41,8 +37,8 @@ class CoffeeShop {
     }
 
     fulfillOrder() {
-        if (this.#orders.length > 0) {
-            let fulfilledItem = this.#orders.shift();
+        if (this._orders.length > 0) {
+            let fulfilledItem = this._orders.shift();
             return `The ${fulfilledItem.item} is ready!`;
         } else {
             return "All orders have been fulfilled!";
@@ -50,26 +46,26 @@ class CoffeeShop {
     }
 
     listOrders() {
-        return this.#orders.map(order => order.item);
+        return this._orders.map(order => order.item);
     }
 
     dueAmount() {
-        return this.#orders.reduce((total, order) => total + order.price, 0);
+        return this._orders.reduce((total, order) => total + order.price, 0);
     }
 
     cheapestItem() {
-        let cheapest = this.#menu.reduce((cheapest, item) => {
+        let cheapest = this._menu.reduce((cheapest, item) => {
             return item.price < cheapest.price ? item : cheapest;
         });
         return cheapest.item;
     }
 
     drinksOnly() {
-        return this.#menu.filter(item => item.type === 'drink').map(item => item.item);
+        return this._menu.filter(item => item.type === 'drink').map(item => item.item);
     }
 
     foodsOnly() {
-        return this.#menu.filter(item => item.type === 'food').map(item => item.item);
+        return this._menu.filter(item => item.type === 'food').map(item => item.item);
     }
 }
 

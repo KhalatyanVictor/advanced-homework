@@ -1,14 +1,13 @@
 class Library {
-    #books;
     #readers;
 
     constructor() {
-        this.#books = [];
+        this._books = [];
         this.#readers = [];
     }
 
     get books() {
-        return this.#books;
+        return this._books;
     }
 
     get readers() {
@@ -16,22 +15,22 @@ class Library {
     }
 
     doHaveBook(requestedBook) {
-        return this.#books.some(book => book.isTheSameBook(requestedBook));
+        return this._books.some(book => book.isTheSameBook(requestedBook));
     }
 
     addBook(newBook) {
-        const existingBook = this.#books.find(book => book.isTheSameBook(newBook));
+        const existingBook = this._books.find(book => book.isTheSameBook(newBook));
         if (existingBook) {
             existingBook.increaseQuantityBy(1);
         } else {
-            this.#books.push(new LibraryBook(newBook.title, newBook.author, newBook.bookId, 1));
+            this._books.push(new LibraryBook(newBook.title, newBook.author, newBook.bookId, 1));
         }
-        return this.#books;
+        return this._books;
     }
 
     addBooks(newBooks) {
         newBooks.forEach(book => this.addBook(book));
-        return this.#books;
+        return this._books;
     }
 
     checkReaderId(readerId) {
@@ -39,7 +38,7 @@ class Library {
     }
 
     lendBook(book, readerId) {
-        const libraryBook = this.#books.find(b => b.isTheSameBook(book) && b.quantity > 0);
+        const libraryBook = this._books.find(b => b.isTheSameBook(book) && b.quantity > 0);
         if (libraryBook && this.checkReaderId(readerId)) {
             libraryBook.decreaseQuantityBy(1);
             const expirationDate = new Date();
@@ -56,28 +55,26 @@ class Library {
 }
 
 class Book {
-    #title;
-    #author;
 
     constructor(title = "", author = "") {
-        this.#title = title;
-        this.#author = author;
+        this._title = title;
+        this._author = author;
     }
 
     get title() {
-        return this.#title;
+        return this._title;
     }
 
     get author() {
-        return this.#author;
+        return this._author;
     }
 
     toString() {
-        return `${this.#title} written by ${this.#author}`;
+        return `${this._title} written by ${this._author}`;
     }
 
     isTheSameBook(book) {
-        return this.#author === book.#author && this.#title === book.#title;
+        return this._author === book._author && this._title === book._title;
     }
 }
 

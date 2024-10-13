@@ -1,9 +1,8 @@
 class Shiritory {
-    #words;
     #gameOver;
 
     constructor() {
-        this.#words = [];
+        this._words = [];
         this.#gameOver = false;
     }
 
@@ -12,8 +11,8 @@ class Shiritory {
             return "Game Over";
         }
 
-        if (this.#words.length > 0) {
-            const lastWord = this.#words[this.#words.length - 1];
+        if (this._words.length > 0) {
+            const lastWord = this._words[this._words.length - 1];
             const lastChar = lastWord.slice(-1).toLowerCase();
             const firstChar = word.charAt(0).toLowerCase();
             
@@ -23,12 +22,12 @@ class Shiritory {
             }
         }
 
-        this.#words.push(word);
-        return this.#words;
+        this._words.push(word);
+        return this._words;
     }
 
     restart() {
-        this.#words = [];
+        this._words = [];
         this.#gameOver = false;
         return "Game Restarted";
     }

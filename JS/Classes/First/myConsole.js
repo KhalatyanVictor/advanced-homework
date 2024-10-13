@@ -1,10 +1,9 @@
 class Console {
     #arguments;
-    #history;
 
     constructor(parameters) {
         this.#arguments = parameters;
-        this.#history = [];
+        this._history = [];
     }
 
     log(secondParameters) {
@@ -20,16 +19,16 @@ class Console {
         } else {
             message = `${this.#arguments}`;
         }
-        this.#history.push(message);
+        this._history.push(message);
         return message;
     }
 
     history() {
-        return this.#history;
+        return this._history;
     }
 
     clearHistory() {
-        this.#history = [];
+        this._history = [];
         return "History cleared.";
     }
 }

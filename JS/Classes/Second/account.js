@@ -1,12 +1,10 @@
 class Account {
     static #lastId = 0;
     #id;
-    #name;
-    #balance;
     
     constructor(name, balance) {
-        this.#name = name;
-        this.#balance = balance;
+        this._name = name;
+        this._balance = balance;
         this.#id = Account.#lastId++; 
     }
 
@@ -15,38 +13,38 @@ class Account {
     }
 
     get name() {
-        return this.#name;
+        return this._name;
     }
 
     get balance() {
-        return this.#balance;
+        return this._balance;
     }
 
     set name(newName) {
-        this.#name = newName;
+        this._name = newName;
     }
 
     set balance(newBalance) {
-        this.#balance = newBalance;
+        this._balance = newBalance;
     }
 
     credit(amount) {
-        this.#balance += amount;
-        return this.#balance;
+        this._balance += amount;
+        return this._balance;
     }
 
     debit(amount) {
-        if (this.#balance >= amount) {
-            this.#balance -= amount;
+        if (this._balance >= amount) {
+            this._balance -= amount;
         } else {
             return "Amount exceeded balance.";
         }
     }
 
     transferTo(anotherAccount, amount) {
-        if (this.#balance >= amount) {
-            this.#balance -= amount;
-            anotherAccount.#balance += amount;
+        if (this._balance >= amount) {
+            this._balance -= amount;
+            anotherAccount._balance += amount;
         } else {
             return "Amount exceeded balance.";
         }
@@ -61,7 +59,7 @@ class Account {
     }
 
     toString() {
-        return `${this.#name}'s account balance is $${this.#balance}`;
+        return `${this._name}'s account balance is $${this._balance}`;
     }
 }
 
