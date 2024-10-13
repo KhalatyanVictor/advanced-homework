@@ -76,7 +76,7 @@ const menu = [
     { item: "coffee", type: "drink", price: 1.00 }
 ];
 
-const tcs = new CoffeeShop("Tesha's Coffee Shop", menu);
+const tcs = new CoffeeShop("Vaspur's Coffee Shop", menu);
 
 console.log(tcs.addOrder("iced coffee"));
 console.log(tcs.fulfillOrder());
