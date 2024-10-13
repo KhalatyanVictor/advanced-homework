@@ -1,32 +1,35 @@
 class Console {
+    #arguments;
+    #history;
+
     constructor(parameters) {
-        this._arguments = parameters;
-        this._history = [];
+        this.#arguments = parameters;
+        this.#history = [];
     }
 
     log(secondParameters) {
         let message;
         if (secondParameters !== undefined) {
             if (Array.isArray(secondParameters)) {
-                message = `${this._arguments}: [${secondParameters}]`;
+                message = `${this.#arguments}: [${secondParameters}]`;
             } else if (typeof secondParameters === 'object' && secondParameters !== null) {
-                message = `${this._arguments}: {${JSON.stringify(secondParameters).slice(1, -1)}}`;
+                message = `${this.#arguments}: {${JSON.stringify(secondParameters).slice(1, -1)}}`;
             } else {
-                message = `${this._arguments}: ${secondParameters}`;
+                message = `${this.#arguments}: ${secondParameters}`;
             }
         } else {
-            message = `${this._arguments}`;
+            message = `${this.#arguments}`;
         }
-        this._history.push(message);
+        this.#history.push(message);
         return message;
     }
 
     history() {
-        return this._history;
+        return this.#history;
     }
 
     clearHistory() {
-        this._history = [];
+        this.#history = [];
         return "History cleared.";
     }
 }

@@ -1,32 +1,35 @@
 class Shiritory {
+    #words;
+    #gameOver;
+
     constructor() {
-        this.words = [];
-        this.gameOver = false;
+        this.#words = [];
+        this.#gameOver = false;
     }
 
     play(word) {
-        if (this.gameOver) {
+        if (this.#gameOver) {
             return "Game Over";
         }
 
-        if (this.words.length > 0) {
-            const lastWord = this.words[this.words.length - 1];
+        if (this.#words.length > 0) {
+            const lastWord = this.#words[this.#words.length - 1];
             const lastChar = lastWord.slice(-1).toLowerCase();
             const firstChar = word.charAt(0).toLowerCase();
             
             if (lastChar !== firstChar) {
-                this.gameOver = true;
+                this.#gameOver = true;
                 return "Game Over";
             }
         }
 
-        this.words.push(word);
-        return this.words;
+        this.#words.push(word);
+        return this.#words;
     }
 
     restart() {
-        this.words = [];
-        this.gameOver = false;
+        this.#words = [];
+        this.#gameOver = false;
         return "Game Restarted";
     }
 }
