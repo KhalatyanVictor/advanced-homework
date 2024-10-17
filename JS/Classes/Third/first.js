@@ -4,11 +4,15 @@ function Shape(name, sides = [], sideLength) {
     this.sideLength = sideLength;
     
     this.calcPerimeter = function(){
-        let initialValue = 0;
-        for (const side of this.sides) {
-            initialValue += side;
+        if (this.sides.length === this.sideLength) {
+            let initialValue = 0;
+            for (const side of this.sides) {
+                initialValue += side;
+            }
+            return initialValue;
+        } else {
+            throw new Error("Sides must be match with Side length!")
         }
-        return initialValue;
     }
 }
 

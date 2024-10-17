@@ -6,12 +6,15 @@ class Shape {
     }
 
     calcPerimeter(){
-        let initialValue = 0;
-        for (const side of this.sides) {
-            initialValue += side;
+        if (this.sides.length === this.sideLength) {
+            let initialValue = 0;
+            for (const side of this.sides) {
+                initialValue += side;
+            }
+            return initialValue;
+        } else {
+            throw new Error("Sides must be match with Side length!")
         }
-
-        return initialValue;
     }
 
 }
@@ -26,12 +29,15 @@ class Square extends Shape {
     }
 
     calcArea(){
-        let initialValue = 0;
-        for (const side in this.sides) {
-            initialValue = this.a * this.b;
+        if (this.sides.length === this.sideLength) {
+            let initialValue = 0;
+            for (const side in this.sides) {
+                initialValue = this.a * this.b;
+            }
+            return initialValue;
+        } else {
+            throw new Error("Sides must be match with Side length!")
         }
-
-        return initialValue
     }
 
 }
