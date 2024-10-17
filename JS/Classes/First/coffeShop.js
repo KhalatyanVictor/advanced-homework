@@ -1,8 +1,10 @@
 class CoffeeShop {
+    #orders;
+
     constructor(name, menu) {
         this._name = name;
         this._menu = menu;
-        this._orders = [];
+        this.#orders = [];
     }
 
     get name() {
@@ -15,21 +17,18 @@ class CoffeeShop {
     get menu() {
         return this._menu;
     }
-    set menu(newMenu) {
-        this._menu = newMenu;
-    }
 
     get orders() {
-        return this._orders;
+        return this.#orders;
     }
     set orders(newOrders) {
-        this._orders = newOrders;
+        this.#orders = newOrders;
     }
 
     addOrder(itemName) {
         const item = this._menu.find(menuItem => menuItem.item === itemName);
         if (item) {
-            this._orders.push(item);
+            this.#orders.push(item);
             return "Order added!";
         } else {
             return "This item is currently unavailable!";
@@ -37,8 +36,8 @@ class CoffeeShop {
     }
 
     fulfillOrder() {
-        if (this._orders.length > 0) {
-            let fulfilledItem = this._orders.shift();
+        if (this.#orders.length > 0) {
+            let fulfilledItem = this.#orders.shift();
             return `The ${fulfilledItem.item} is ready!`;
         } else {
             return "All orders have been fulfilled!";
@@ -46,11 +45,11 @@ class CoffeeShop {
     }
 
     listOrders() {
-        return this._orders.map(order => order.item);
+        return this.#orders.map(order => order.item);
     }
 
     dueAmount() {
-        return this._orders.reduce((total, order) => total + order.price, 0);
+        return this.#orders.reduce((total, order) => total + order.price, 0);
     }
 
     cheapestItem() {
