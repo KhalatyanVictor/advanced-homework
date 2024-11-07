@@ -6,6 +6,7 @@ const getCookieBtn = document.getElementById("getCookieBtn");
 const getCookieFirstName = document.getElementById("cookieFirstName");
 const deleteCookieName = document.getElementById("deleteCookieName");
 const deleteCookieBtn = document.getElementById("deleteCookieBtn");
+const cookieResultContainer = document.getElementById("cookieResultContainer");
 
 function setCookie(name, value, expireDate) {
   const date = new Date();
@@ -14,16 +15,22 @@ function setCookie(name, value, expireDate) {
 }
 
 function deleteCookie(name) {
-  setCookie(name, null, null);
+  setCookie(name, null, -1);
 }
 
 function getCookie(name) {
   const cookies = document.cookie.split("; ");
+  let cookieFound = false;
   for (let cookie of cookies) {
     const [cookieName, cookieValue] = cookie.split("=");
     if (cookieName === name) {
-      console.log(cookieValue);
+      cookieResultContainer.innerHTML = `<p><strong>${cookieName}:</strong> ${cookieValue}</p>`;
+      cookieFound = true;
+      break;
     }
+  }
+  if (!cookieFound) {
+    cookieResultContainer.innerHTML = `<p>No cookie found with the name "${name}"</p>`;
   }
   return null;
 }

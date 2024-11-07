@@ -3,25 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cookies</title>
+    <title>Cookie Manager</title>
     <link rel="stylesheet" href="css/cookies.css">
 </head>
 <body>
-    <label for="firstName">First Name:</label>
-    <input type="text" placeholder="First Name" id="firstText"><br> <br>
-    <label for="lastName">First Name:</label>
-    <input type="text" placeholder="Last Name" id="lastText"><br> <br>
-    <input type="number" placeholder="Expire Date" id="expireDateText"><br> <br>
-    <button id="submitBtn">Submit</button> <br> <br><br> <br>
+    <div class="cookieManagerContainer">
+        <h1>Cookie Manager</h1>
 
-    <label for="cookieName">Cookie's First Name: </label>
-    <input type="text" placeholder="Cookie's First Name" id="cookieFirstName"><br> <br>
-    <button id="getCookieBtn">Get Cookie</button> <br> <br><br> <br>
+        <div class="formSection addCookieContainer">
+            <h2>Add New Cookie</h2>
+            <label for="firstName">First Name:</label>
+            <input type="text" placeholder="Enter First Name" id="firstText" required><br> <br>
 
-    <label for="cookieName">Cookie's First Name: </label>
-    <input type="text" placeholder="Delete Cookie's First Name" id="deleteCookieName"><br> <br>
-    <button id="deleteCookieBtn">Delete Cookie</button> 
+            <label for="lastName">Last Name:</label>
+            <input type="text" placeholder="Enter Last Name" id="lastText" required><br> <br>
 
+            <label for="expireDate">Expire Date:</label>
+            <input type="number" placeholder="Enter Expiry Date" id="expireDateText" required><br> <br>
+
+            <button id="submitBtn">Save Cookie</button>
+        </div>
+
+        <div class="formSection getCookieContainer">
+            <h2>Retrieve Cookie</h2>
+            <label for="cookieName">Cookie's First Name: </label>
+            <input type="text" placeholder="Enter Cookie's First Name" id="cookieFirstName" required><br> <br>
+
+            <button id="getCookieBtn">Get Cookie</button>
+        </div>
+
+        <div class="formSection removeCookieContainer">
+            <h2>Delete Cookie</h2>
+            <label for="cookieName">Cookie's First Name: </label>
+            <input type="text" placeholder="Delete Cookie's First Name" id="deleteCookieName" required><br> <br>
+
+            <button id="deleteCookieBtn">Delete Cookie</button>
+        </div>
+
+        <div class="form-section">
+            <h2>Cookie Result</h2>
+            <div id="cookieResultContainer">
+                
+            </div>
+        </div>
+    </div>
 </body>
 <script src="js/cookies/cookies.js"></script>
 </html>
