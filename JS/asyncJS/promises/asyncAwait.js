@@ -38,14 +38,18 @@ function trashOut() {
 }
 
 async function doAllTasks() {
-  const dogRes = await walkTheDog();
-  console.log(dogRes);
+  try {
+    const dogRes = await walkTheDog();
+    console.log(dogRes);
 
-  const cleanRes = await cleanTheKitchen();
-  console.log(cleanRes);
+    const cleanRes = await cleanTheKitchen();
+    console.log(cleanRes);
 
-  const takeOutTrashRes = await trashOut();
-  console.log(takeOutTrashRes);
+    const takeOutTrashRes = await trashOut();
+    console.log(takeOutTrashRes);
+  } catch (error) {
+    throw new Error(error);
+  }
 }
 
 console.log(doAllTasks());
