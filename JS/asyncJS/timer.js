@@ -22,5 +22,6 @@ stopBtn.addEventListener("click", () => {
 
 resetBtn.addEventListener("click", () => {
   clearInterval(timer);
-  currentTime.textContent = 0;
+  seconds = 0;
+  currentTime.textContent = seconds;
 });
