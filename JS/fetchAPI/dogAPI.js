@@ -9,11 +9,12 @@ document
         .then((data) => {
           const imageData = data.message;
           const container = document.getElementById("dogImagesContainer");
-
+          container.innerHTML = "";
           imageData.forEach((imageUrl) => {
             const imgElement = document.createElement("img");
             imgElement.src = imageUrl;
             imgElement.alt = `${selectedBreed} dog image`;
+
             container.appendChild(imgElement);
           });
         })
